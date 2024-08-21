@@ -20,15 +20,15 @@
             </form>
         </div>
         <div class="form-container sign-in-container">
-            <form action="login_process.php" method="POST">
-                <h1>Svadharmam</h1>
-                <h4>Management System</h4>
-                <span>or use your account</span>
-                <input type="email" name="email" placeholder="Email" required />
-                <input type="password" name="password" placeholder="Password" required />
-                <br>
-                <button type="submit">Log In</button>
-            </form>
+        <form action="login_process.php" method="POST">
+    <h1>Svadharmam</h1>
+    <h4>Management System</h4>
+    <span>or use your account</span>
+    <input type="text" name="login_identifier" placeholder="Email or UserID" required />
+    <input type="password" name="password" placeholder="Password" required />
+    <br>
+    <button type="submit">Log In</button>
+</form>
         </div>
         <div class="overlay-container">
             <div class="overlay">

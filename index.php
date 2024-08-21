@@ -1,10 +1,12 @@
 <?php
 session_start();  // Start the session
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['userid'])) {
     // If the user is not logged in, redirect to login page
     header("Location: login.php");
     exit;
+
+    
 }
 
 // If the user is logged in, display the content
@@ -18,7 +20,16 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 <body>
     <h1>Welcome to Svadharmam Management System!</h1>
-    <p>You are logged in.</p>
+    <p><?php echo $_SESSION['userid']; ?>,You are logged in.</p>
+    <br>
+    <a href="create_profile.php">Add Profile</a>
+    <br>
+    <a href="add_counselor.php">Add Counselor</a>
+    <br>
+    <a href="view_profiles.php">View Profile</a>
+    <br>
+    <a href="view_users.php">View Users</a>
+    <br>
     <a href="logout.php">Log Out</a>
 
 </body>

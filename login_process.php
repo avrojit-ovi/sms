@@ -1,39 +1,34 @@
 <?php
 session_start();  // Start the session
 
-$servername = "localhost";
-$username = "root";  // Change if necessary
-$password = "";  // Change if necessary
-$dbname = "svadharmam_db";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+require_once 'config.php';  // Include the database configuration file
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
+    $login_identifier = $_POST['login_identifier'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM users WHERE email='$email'";
-    $result = $conn->query($sql);
+    // Prepare SQL query to fetch user by email or userid
+    $sql = "SELECT * FROM users WHERE (email = :login_identifier OR userid = :login_identifier)";
+    $stmt = $conn->prepare($sql);
 
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        if (password_verify($password, $row['password'])) {
-            $_SESSION['user_id'] = $row['id'];  // Store user ID in session
-            header("Location: index.php");
-            exit;
-        } else {
-            echo "Invalid password.";
-        }
+    // Bind parameters
+    $stmt->bindParam(':login_identifier', $login_identifier);
+
+    // Execute the query
+    $stmt->execute();
+    
+    // Fetch the user record
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($user && password_verify($password, $user['password'])) {
+        // If password is correct, store user info in session
+        $_SESSION['userid'] = $user['userid'];  // Store user ID in session
+        $_SESSION['role'] = $user['role'];  // Store the user role
+        header("Location: index.php");  // Redirect to index.php
+        exit;
     } else {
-        echo "No user found with that email address.";
+        // Invalid login
+        echo "Invalid email/username or password.";
     }
-
-    $conn->close();
 }
 ?>
