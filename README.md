@@ -1,8 +1,3 @@
-# sms
-Certainly! Here's a comprehensive `README.md` for your Svadharmam Management System project:
-
----
-
 # Svadharmam Management System
 
 ## Overview
