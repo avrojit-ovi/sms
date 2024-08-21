@@ -1,20 +1,18 @@
 <?php
-session_start();
+session_start(); // Start the session
 
-require_once 'config.php';
+require_once 'config.php'; // Include the database configuration file
 
-// Check if the user is logged in and has the appropriate role
-if (!isset($_SESSION['userid']) || ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'counselor')) {
+// Check if the user is logged in
+if (!isset($_SESSION['userid']) || !in_array($_SESSION['role'], ['admin', 'counselor'])) {
+    // Redirect to noaccess.php if the user does not have the required role
     header("Location: noaccess.php");
     exit;
 }
 
 // Fetch profiles from the database
-$sql = "SELECT * FROM profiles";
-$stmt = $conn->prepare($sql);
-$stmt->execute();
-$profiles = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+$query = $conn->query("SELECT * FROM profiles"); 
+$profiles = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -23,35 +21,37 @@ $profiles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Profiles - Svadharmam Management System</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="mb-4">Profiles</h1>
-        <div class="row">
-            <?php foreach ($profiles as $profile): ?>
+<div class="container mt-5">
+    <h1 class="text-center">Profiles</h1>
+    <div class="row">
+        <?php foreach ($profiles as $profile): ?>
             <div class="col-md-4 mb-4">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo htmlspecialchars($profile['name']); ?></h5>
-                        <p class="card-text">Dikksha Name: <?php echo htmlspecialchars($profile['dikksha_name']); ?></p>
-                        <p class="card-text">Gurudev's Name: <?php echo htmlspecialchars($profile['gurudev_name']); ?></p>
-                        <p class="card-text">Counselor's Name: <?php echo htmlspecialchars($profile['counselor_name']); ?></p>
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-<?php echo $profile['id']; ?>">Show More</button>
+                        <p class="card-text"><strong>Dikksha Name:</strong> <?php echo htmlspecialchars($profile['dikksha_name']); ?></p>
+                        <p class="card-text"><strong>Gurudev's Name:</strong> <?php echo htmlspecialchars($profile['gurudev_name']); ?></p>
+                        <p class="card-text"><strong>Counselor Name:</strong> <?php echo htmlspecialchars($profile['counselor_name']); ?></p>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#profileModal<?php echo $profile['id']; ?>">
+                            Show More
+                        </button>
                     </div>
                 </div>
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="modal-<?php echo $profile['id']; ?>" tabindex="-1" aria-labelledby="modalLabel-<?php echo $profile['id']; ?>" aria-hidden="true">
+            <div class="modal fade" id="profileModal<?php echo $profile['id']; ?>" tabindex="-1" aria-labelledby="profileModalLabel<?php echo $profile['id']; ?>" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="modalLabel-<?php echo $profile['id']; ?>">Profile Details</h5>
+                            <h5 class="modal-title" id="profileModalLabel<?php echo $profile['id']; ?>"><?php echo htmlspecialchars($profile['name']); ?> - Full Profile</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                        <div class="row">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <p><strong>UserID:</strong> <?php echo htmlspecialchars($profile['userid']); ?></p>
                                     <p><strong>Name:</strong> <?php echo htmlspecialchars($profile['name']); ?></p>
@@ -78,19 +78,18 @@ $profiles = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <p><strong>Created Date:</strong> <?php echo htmlspecialchars($profile['created_date']); ?></p>
                                 </div>
                             </div>
-            </div>
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <a href="edit_profile.php?id=<?php echo htmlspecialchars($profile['id']); ?>" class="btn btn-primary">Edit</a>
-                            <a href="delete_profile.php?id=<?php echo htmlspecialchars($profile['id']); ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this profile?');">Delete</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <?php endforeach; ?>
-        </div>
+        <?php endforeach; ?>
     </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

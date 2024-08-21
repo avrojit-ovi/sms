@@ -7,7 +7,23 @@ if (!isset($_SESSION['userid'])) {
     exit;
 }
 
-// If the user is logged in, display the form
+require_once 'config.php';  // Include the database configuration file
+
+function generateUserId($conn) {
+    do {
+        $unique_number = rand(1000, 9999);
+        $userid = "SMSU" . $unique_number;
+
+        // Check if the generated userid is unique
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM profiles WHERE userid = :userid");
+        $stmt->execute(['userid' => $userid]);
+        $count = $stmt->fetchColumn();
+    } while ($count > 0);
+
+    return $userid;
+}
+
+$generated_userid = generateUserId($conn);  // Generate the userid
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +38,12 @@ if (!isset($_SESSION['userid'])) {
     <div class="container mt-5">
         <h2 class="text-center">Svadharmam - Sadhana Recorder Profile</h2>
         <form method="POST" action="insert_profile.php">
+            <div class="row mb-3">
+                
+                    <label for="userid" class="form-label">User ID</label>
+                    <input type="text" class="form-control" id="userid" name="userid" value="<?php echo $generated_userid; ?>" readonly>
+                
+            </div>
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="name" class="form-label">Name</label>

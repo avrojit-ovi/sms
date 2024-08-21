@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2024 at 01:00 PM
+-- Generation Time: Aug 21, 2024 at 01:54 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -47,18 +47,21 @@ CREATE TABLE `profiles` (
   `granthas_read` text DEFAULT NULL,
   `mangal_aarti_regularly` enum('Yes','No') NOT NULL,
   `nearest_iskcon_temple` varchar(255) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `userid` varchar(8) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `profiles`
 --
 
-INSERT INTO `profiles` (`id`, `name`, `dikksha_name`, `phone_no`, `father_name`, `gurudev_name`, `counselor_name`, `counselor_phone_no`, `date_of_birth`, `educational_qualifications`, `study_occupation_organization`, `present_address`, `permanent_address`, `iskcon_connection_days`, `daily_chant_rounds`, `regular_chant_days`, `granthas_read`, `mangal_aarti_regularly`, `nearest_iskcon_temple`, `created_date`) VALUES
-(1, 'Krishna', 'Krishna', '123', 'test', 'test', 'test', '123', '2024-08-26', 'test', 'test', 'test', 'test', 10, 16, 10, 'test', 'Yes', 'test', '2024-08-21 02:36:11'),
-(2, 'Krishna', 'Krishna', '123', 'test', 'test', 'test', '123', '2024-08-26', 'test', 'test', 'test', 'test', 10, 16, 10, 'test', 'Yes', 'test', '2024-08-21 02:36:21'),
-(3, 'Ananta Shayi', 'Ananta Shayi', '123', 'test', 'test', 'test', '123', '2024-08-26', 'test', 'test', 'test', 'test', 10, 16, 10, 'test', 'Yes', 'Nandankanan', '0000-00-00 00:00:00'),
-(4, 'Achutta Keshaba', 'Achutta Keshaba', '123', 'test', 'test', 'test', '123', '2024-08-26', 'test', 'test', 'test', 'test', 10, 16, 10, 'test', 'Yes', 'Nandankanan', '2024-08-21 03:05:01');
+INSERT INTO `profiles` (`id`, `name`, `dikksha_name`, `phone_no`, `father_name`, `gurudev_name`, `counselor_name`, `counselor_phone_no`, `date_of_birth`, `educational_qualifications`, `study_occupation_organization`, `present_address`, `permanent_address`, `iskcon_connection_days`, `daily_chant_rounds`, `regular_chant_days`, `granthas_read`, `mangal_aarti_regularly`, `nearest_iskcon_temple`, `created_date`, `userid`) VALUES
+(1, 'Krishna', 'Krishna', '123', 'test', 'test', 'test', '123', '2024-08-26', 'test', 'test', 'test', 'test', 10, 16, 10, 'test', 'Yes', 'test', '2024-08-21 02:36:11', 'smsu0001'),
+(2, 'Krishna', 'Krishna', '01555555555', 'test11111', 'test11111', 'test1111', '1231111111', '2024-08-26', 'test11111111111', 'test1111111111', 'test1111111111', 'test11111111', 10, 16, 10, 'test11111111', 'Yes', 'test', '2024-08-21 02:36:21', 'smsu0002'),
+(3, 'Ananta Shayi', 'Ananta Shayi', '123', 'test', 'test', 'test', '123', '2024-08-26', 'test', 'test', 'test', 'test', 10, 16, 10, 'test', 'Yes', 'Nandankanan', '0000-00-00 00:00:00', 'smsu0003'),
+(4, 'Achutta Keshaba', 'Achutta Keshaba', '123', 'test', 'test', 'test', '123', '2024-08-26', 'test', 'test', 'test', 'test', 10, 16, 10, 'test', 'Yes', 'Nandankanan', '2024-08-21 03:05:01', 'smsu0004'),
+(5, 'test', 'test', 'test', 'test', 'test', 'test', 'test', '2024-08-13', 'test', 'test', 'test', 'test', 1000, 16, 1000, 'test', 'Yes', 'test', '2024-08-21 07:21:28', 'smsu9149'),
+(6, 'test2', 'test2', 'test2', 'test2', 'test2', 'test2', 'test2', '2024-08-22', 'test2', 'test2', 'test2', 'test2', 2, 2, 2, 'test2', 'Yes', 'test2', '2024-08-21 07:29:30', 'smsu5361');
 
 -- --------------------------------------------------------
 
@@ -95,7 +98,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `phone`, `password`, `userid`, `role
 -- Indexes for table `profiles`
 --
 ALTER TABLE `profiles`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `userid` (`userid`);
 
 --
 -- Indexes for table `users`
@@ -113,7 +117,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `profiles`
 --
 ALTER TABLE `profiles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`

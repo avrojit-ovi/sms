@@ -9,7 +9,22 @@ if (!isset($_SESSION['userid'])) {
 
 require 'config.php';  // Include the database connection file
 
+function generateUserId($conn) {
+    do {
+        $unique_number = rand(1000, 9999);
+        $userid = "smsu" . $unique_number;
+
+        // Check if the generated userid is unique
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM profiles WHERE userid = :userid");
+        $stmt->execute(['userid' => $userid]);
+        $count = $stmt->fetchColumn();
+    } while ($count > 0);
+
+    return $userid;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $userid = generateUserId($conn);
     $name = $_POST['name'];
     $dikksha_name = $_POST['dikksha_name'];
     $phone_no = $_POST['phone_no'];
@@ -30,11 +45,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nearest_iskcon_temple = $_POST['nearest_iskcon_temple'];
     $created_date = date('Y-m-d H:i:s');
 
-    $sql = "INSERT INTO profiles (name, dikksha_name, phone_no, father_name, gurudev_name, counselor_name, counselor_phone_no, date_of_birth, educational_qualifications, study_occupation_organization, present_address, permanent_address, iskcon_connection_days, daily_chant_rounds, regular_chant_days, granthas_read, mangal_aarti_regularly, nearest_iskcon_temple, created_date) 
-            VALUES (:name, :dikksha_name, :phone_no, :father_name, :gurudev_name, :counselor_name, :counselor_phone_no, :date_of_birth, :educational_qualifications, :study_occupation_organization, :present_address, :permanent_address, :iskcon_connection_days, :daily_chant_rounds, :regular_chant_days, :granthas_read, :mangal_aarti_regularly, :nearest_iskcon_temple, :created_date)";
+    $sql = "INSERT INTO profiles (userid, name, dikksha_name, phone_no, father_name, gurudev_name, counselor_name, counselor_phone_no, date_of_birth, educational_qualifications, study_occupation_organization, present_address, permanent_address, iskcon_connection_days, daily_chant_rounds, regular_chant_days, granthas_read, mangal_aarti_regularly, nearest_iskcon_temple, created_date) 
+            VALUES (:userid, :name, :dikksha_name, :phone_no, :father_name, :gurudev_name, :counselor_name, :counselor_phone_no, :date_of_birth, :educational_qualifications, :study_occupation_organization, :present_address, :permanent_address, :iskcon_connection_days, :daily_chant_rounds, :regular_chant_days, :granthas_read, :mangal_aarti_regularly, :nearest_iskcon_temple, :created_date)";
 
     $stmt = $conn->prepare($sql);
     
+    $stmt->bindParam(':userid', $userid);
     $stmt->bindParam(':name', $name);
     $stmt->bindParam(':dikksha_name', $dikksha_name);
     $stmt->bindParam(':phone_no', $phone_no);
@@ -56,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(':created_date', $created_date);
 
     if ($stmt->execute()) {
-        header("Location: view_profiles.php");  // Redirect to a success page
+        header("Location: view_profiles.php");  // Redirect to the view profiles page
         exit;
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
