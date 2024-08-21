@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2024 at 01:54 PM
+-- Generation Time: Aug 21, 2024 at 02:07 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -61,7 +61,7 @@ INSERT INTO `profiles` (`id`, `name`, `dikksha_name`, `phone_no`, `father_name`,
 (3, 'Ananta Shayi', 'Ananta Shayi', '123', 'test', 'test', 'test', '123', '2024-08-26', 'test', 'test', 'test', 'test', 10, 16, 10, 'test', 'Yes', 'Nandankanan', '0000-00-00 00:00:00', 'smsu0003'),
 (4, 'Achutta Keshaba', 'Achutta Keshaba', '123', 'test', 'test', 'test', '123', '2024-08-26', 'test', 'test', 'test', 'test', 10, 16, 10, 'test', 'Yes', 'Nandankanan', '2024-08-21 03:05:01', 'smsu0004'),
 (5, 'test', 'test', 'test', 'test', 'test', 'test', 'test', '2024-08-13', 'test', 'test', 'test', 'test', 1000, 16, 1000, 'test', 'Yes', 'test', '2024-08-21 07:21:28', 'smsu9149'),
-(6, 'test2', 'test2', 'test2', 'test2', 'test2', 'test2', 'test2', '2024-08-22', 'test2', 'test2', 'test2', 'test2', 2, 2, 2, 'test2', 'Yes', 'test2', '2024-08-21 07:29:30', 'smsu5361');
+(6, 'test', 'test2', 'test2', 'test2', 'test2', 'test2', 'test2', '2024-08-22', 'test2', 'test2', 'test2', 'test2', 2, 2, 2, 'test2', 'Yes', 'test2', '2024-08-21 07:29:30', 'smsu5361');
 
 -- --------------------------------------------------------
 
