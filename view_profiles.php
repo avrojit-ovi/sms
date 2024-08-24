@@ -51,7 +51,7 @@ $profiles = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                        <div class="row">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <p><strong>UserID:</strong> <?php echo htmlspecialchars($profile['userid']); ?></p>
                                     <p><strong>Name:</strong> <?php echo htmlspecialchars($profile['name']); ?></p>
@@ -67,7 +67,6 @@ $profiles = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <p><strong>Education:</strong> <?php echo htmlspecialchars($profile['educational_qualifications']); ?></p>
                                     <p><strong>Occupation:</strong> <?php echo htmlspecialchars($profile['study_occupation_organization']); ?></p>
                                     <p><strong>Doing Mangal Aarti Regularly:</strong> <?php echo htmlspecialchars($profile['mangal_aarti_regularly']); ?></p>
-                                    
                                 </div>
                                 <div class="col-md-4">
                                     <p><strong>Connected Days:</strong> <?php echo htmlspecialchars($profile['iskcon_connection_days']); ?></p>
@@ -78,11 +77,33 @@ $profiles = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <p><strong>Created Date:</strong> <?php echo htmlspecialchars($profile['created_date']); ?></p>
                                 </div>
                             </div>
-            </div>
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <a href="edit_profile.php?id=<?php echo htmlspecialchars($profile['id']); ?>" class="btn btn-primary">Edit</a>
                             <a href="delete_profile.php?id=<?php echo htmlspecialchars($profile['id']); ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this profile?');">Delete</a>
+
+                            <?php
+                            // Check if the profile already has login access
+                            $userCheckSql = "SELECT * FROM users WHERE userid = :userid";
+                            $userCheckStmt = $conn->prepare($userCheckSql);
+                            $userCheckStmt->bindParam(':userid', $profile['userid']);
+                            $userCheckStmt->execute();
+                            $existingUser = $userCheckStmt->fetch(PDO::FETCH_ASSOC);
+
+                            if ($existingUser) {
+                                // If login access already exists, display a message
+                                echo "<span class='btn btn-success disabled '>Already has login access</span>";
+                            } else {
+                                // If no login access exists, show the button
+                                if ($_SESSION['role'] === 'admin') {
+                                    echo "<form action='give_login_access.php' method='POST' class='d-inline'>
+                                            <input type='hidden' name='profile_id' value='" . htmlspecialchars($profile['id']) . "'>
+                                            <button type='submit' class='btn btn-success'>Give Login Access</button>
+                                          </form>";
+                                }
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>

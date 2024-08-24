@@ -1,5 +1,7 @@
 # Svadharmam Management System
 
+
+
 ## Overview
 
 The **Svadharmam Management System** is a PHP and MySQL-based application designed to manage detailed information related to ISKCON (International Society for Krishna Consciousness) devotees. The system allows administrators to create, view, and manage devotee profiles with various details, and supports role-based access control to ensure proper access levels for different types of users.

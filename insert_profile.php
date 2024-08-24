@@ -25,6 +25,7 @@ function generateUserId($conn) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userid = generateUserId($conn);
+    $email = $_POST['email'];
     $name = $_POST['name'];
     $dikksha_name = $_POST['dikksha_name'];
     $phone_no = $_POST['phone_no'];
@@ -45,12 +46,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nearest_iskcon_temple = $_POST['nearest_iskcon_temple'];
     $created_date = date('Y-m-d H:i:s');
 
-    $sql = "INSERT INTO profiles (userid, name, dikksha_name, phone_no, father_name, gurudev_name, counselor_name, counselor_phone_no, date_of_birth, educational_qualifications, study_occupation_organization, present_address, permanent_address, iskcon_connection_days, daily_chant_rounds, regular_chant_days, granthas_read, mangal_aarti_regularly, nearest_iskcon_temple, created_date) 
-            VALUES (:userid, :name, :dikksha_name, :phone_no, :father_name, :gurudev_name, :counselor_name, :counselor_phone_no, :date_of_birth, :educational_qualifications, :study_occupation_organization, :present_address, :permanent_address, :iskcon_connection_days, :daily_chant_rounds, :regular_chant_days, :granthas_read, :mangal_aarti_regularly, :nearest_iskcon_temple, :created_date)";
+    $sql = "INSERT INTO profiles (userid, email, name, dikksha_name, phone_no, father_name, gurudev_name, counselor_name, counselor_phone_no, date_of_birth, educational_qualifications, study_occupation_organization, present_address, permanent_address, iskcon_connection_days, daily_chant_rounds, regular_chant_days, granthas_read, mangal_aarti_regularly, nearest_iskcon_temple, created_date) 
+            VALUES (:userid, :email, :name, :dikksha_name, :phone_no, :father_name, :gurudev_name, :counselor_name, :counselor_phone_no, :date_of_birth, :educational_qualifications, :study_occupation_organization, :present_address, :permanent_address, :iskcon_connection_days, :daily_chant_rounds, :regular_chant_days, :granthas_read, :mangal_aarti_regularly, :nearest_iskcon_temple, :created_date)";
 
     $stmt = $conn->prepare($sql);
     
     $stmt->bindParam(':userid', $userid);
+    $stmt->bindParam(':email', $email);
     $stmt->bindParam(':name', $name);
     $stmt->bindParam(':dikksha_name', $dikksha_name);
     $stmt->bindParam(':phone_no', $phone_no);

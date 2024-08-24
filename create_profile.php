@@ -39,10 +39,14 @@ $generated_userid = generateUserId($conn);  // Generate the userid
         <h2 class="text-center">Svadharmam - Sadhana Recorder Profile</h2>
         <form method="POST" action="insert_profile.php">
             <div class="row mb-3">
-                
-                    <label for="userid" class="form-label">User ID</label>
-                    <input type="text" class="form-control" id="userid" name="userid" value="<?php echo $generated_userid; ?>" readonly>
-                
+            <div class="col-md-6">
+                <label for="userid" class="form-label">User ID</label>
+                <input type="text" class="form-control" id="userid" name="userid" value="<?php echo $generated_userid; ?>" readonly>
+                </div>
+                <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+                </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
