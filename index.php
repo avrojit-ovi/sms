@@ -26,6 +26,8 @@ if (!isset($_SESSION['userid'])) {
     <br>
     <a href="add_counselor.php">Add Counselor</a>
     <br>
+    <a href="shadhana_recorder.php">Add Shadhana Record</a>
+    <br>
     <a href="assign_counselor.php">Assign Counselor</a>
     <br>
     <a href="view_profiles.php">View Profile</a>
