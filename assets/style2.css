@@ -1,0 +1,56 @@
+/* Sidebar Styling */
+body {
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #343a40;
+    padding: 20px;
+}
+
+.sidebar a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.sidebar a:hover {
+    background-color: #495057;
+    border-radius: 5px;
+}
+
+/* Content Styling */
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #343a40;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+    color: #fff;
+}
+
+.navbar .dropdown-menu {
+    right: 0;
+    left: auto;
+}
+
+/* For a scrollable card */
+.rounded-card {
+    border-radius: 15px;
+    max-width: 100%;
+    background-color: #fff;
+    padding: 40px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    height: 800px; /* Set a fixed height */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
