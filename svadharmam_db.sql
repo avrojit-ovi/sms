@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 09, 2024 at 12:45 PM
+-- Generation Time: Sep 15, 2024 at 01:53 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -163,7 +163,6 @@ CREATE TABLE `shadhana_record` (
 
 INSERT INTO `shadhana_record` (`id`, `userid`, `user_name`, `morning_wake_up_time`, `mangalaarti_time`, `tulsi_parikrama`, `chanting_rounds`, `chanting_finished_time`, `grantha_study`, `which_grantha`, `grantha_reading_duration`, `lecture_hearing`, `which_lecture`, `lecture_hearing_duration`, `material_study_work`, `material_study_work_duration`, `devotional_services_done`, `did_gossip`, `gossip_duration`, `phone_usage_duration`, `slept_listening_kirtan`, `date_time`) VALUES
 (1, 'smsu5361', 'test', '00:37:00', '03:36:00', 'Yes', 15, '00:39:00', 'Yes', 'qwefw', 'wdfw', 'Yes', 'qwc', '23', 'Yes', '1111', 'wfwefvc', 'Yes', '22', '22', 'Yes', '2024-09-07 13:20:04'),
-(2, 'smsu0001\r\n', 'test', '00:37:00', '03:36:00', 'Yes', 15, '00:39:00', 'Yes', 'qwefw', 'wdfw', 'Yes', 'qwc', '23', 'Yes', '1111', 'wfwefvc', 'Yes', '22', '22', 'Yes', '2024-09-07 13:20:04'),
 (3, 'smsu0003', 'Ananta Shayi', '01:06:00', '01:04:00', 'Yes', 33, '01:04:00', 'Yes', 'test', '2', 'Yes', 'test', '23', 'Yes', '23', 'qwerfgw2e43get', 'Yes', '22', 'werfew', 'Yes', '2024-09-06 13:20:04');
 
 -- --------------------------------------------------------
