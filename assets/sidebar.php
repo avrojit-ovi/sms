@@ -1,18 +1,48 @@
 <!-- assets/sidebar.php -->
+<?php
+// Get the current script name
+$currentPage = basename($_SERVER['PHP_SELF']);
+
+// Start session and check user role
+
+$userRole = isset($_SESSION['role']) ? $_SESSION['role'] : '';
+
+// Determine if the user is an admin or counselor
+$isAdminOrCounselor = ($userRole === 'admin' || $userRole === 'counselor');
+?>
+
 <div id="sidebar" class="sidebar d-flex flex-column justify-content-between">
     <div>
-        <a href="#" class="active">
-            <i class="fas fa-home sidebar-icon"></i><span>Dashboard</span>
-        </a>
-        <a href="#">
-            <i class="fas fa-user sidebar-icon"></i><span>Profile</span>
-        </a>
-        <a href="#">
-            <i class="fas fa-file sidebar-icon"></i><span>Records</span>
-        </a>
-        <a href="#">
-            <i class="fas fa-cog sidebar-icon"></i><span>Settings</span>
-        </a>
+        <?php if ($isAdminOrCounselor): ?>
+            <a href="index.php" class="<?php echo $currentPage === 'index.php' ? 'active' : ''; ?>">
+                <i class="fas fa-home sidebar-icon"></i><span>Dashboard</span>
+            </a>
+            <a href="create_profile.php" class="<?php echo $currentPage === 'create_profile.php' ? 'active' : ''; ?>">
+                <i class="fas fa-user-plus sidebar-icon"></i><span>Add Profile</span>
+            </a>
+            <a href="add_counselor.php" class="<?php echo $currentPage === 'add_counselor.php' ? 'active' : ''; ?>">
+                <i class="fas fa-chalkboard-teacher sidebar-icon"></i><span>Add Counselor</span>
+            </a>
+            <a href="shadhana_recorder.php" class="<?php echo $currentPage === 'shadhana_recorder.php' ? 'active' : ''; ?>">
+                <i class="fas fa-clipboard sidebar-icon"></i><span>Add Shadhana Record</span>
+            </a>
+            <a href="assign_counselor.php" class="<?php echo $currentPage === 'assign_counselor.php' ? 'active' : ''; ?>">
+                <i class="fas fa-user-tie sidebar-icon"></i><span>Assign Counselor</span>
+            </a>
+            <a href="view_profiles.php" class="<?php echo $currentPage === 'view_profiles.php' ? 'active' : ''; ?>">
+                <i class="fas fa-address-card sidebar-icon"></i><span>View Profile</span>
+            </a>
+            <a href="view_users.php" class="<?php echo $currentPage === 'view_users.php' ? 'active' : ''; ?>">
+                <i class="fas fa-users sidebar-icon"></i><span>View Users</span>
+            </a>
+            <a href="view_shadhana_records.php" class="<?php echo $currentPage === 'view_shadhana_records.php' ? 'active' : ''; ?>">
+                <i class="fas fa-list-alt sidebar-icon"></i><span>View Shadhana Records</span>
+            </a>
+        <?php else: ?>
+            <a href="shadhana_recorder.php" class="<?php echo $currentPage === 'shadhana_recorder.php' ? 'active' : ''; ?>">
+                <i class="fas fa-clipboard sidebar-icon"></i><span>Add Shadhana Record</span>
+            </a>
+        <?php endif; ?>
     </div>
 
     <!-- Sidebar Toggle Button at the bottom -->

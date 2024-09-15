@@ -7,11 +7,11 @@
         <div class="ms-auto d-flex align-items-center">
             <div class="profile-dropdown dropdown">
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-user-circle"></i> Profile
+                    <i class="fas fa-user-circle"></i> <?php echo htmlspecialchars($user['userid']); ?>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                     <li><a class="dropdown-item" href="#">My Profile</a></li>
-                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                    <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                 </ul>
             </div>
         </div>

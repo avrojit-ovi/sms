@@ -9,20 +9,7 @@ if (!isset($_SESSION['userid'])) {
 
 // If the user is logged in, display the form
 ?>
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Svadharmam - Sadhana Recorder Profile</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-</head>
-<body>
-    <div class="container mt-5">
+<?php include 'dheader.php' ?>
         <h2>Add Counselor</h2>
         <form action="add_counselor_process.php" method="POST">
             <div class="row">
@@ -55,8 +42,4 @@ if (!isset($_SESSION['userid'])) {
                 </div>
             </div>
         </form>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+        <?php include 'dfooter.php' ?>

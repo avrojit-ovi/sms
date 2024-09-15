@@ -25,35 +25,7 @@ function generateUserId($conn) {
 
 $generated_userid = generateUserId($conn);  // Generate the userid
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Profile</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/style2.css">
-</head>
-<body>
-
-    <!-- Include Sidebar -->
-    <?php include 'assets/sidebar.php'; ?>
-
-    <!-- Main Content -->
-    <div class="content">
-        <!-- Include Navbar -->
-        <?php include 'assets/navbar.php'; ?>
-        <br>
-
-        <!-- Page Content -->
-        <div class="container-fluid">
-            <!-- Rounded Card Div -->
-            <div class="rounded-card shadow-lg p-5 bg-white rounded">
+<?php include 'dheader.php' ?>
                 <div class="container">
                     <h2 class="text-center">Svadharmam - Sadhana Recorder Profile</h2>
                     <form method="POST" action="insert_profile.php">
@@ -163,20 +135,4 @@ $generated_userid = generateUserId($conn);  // Generate the userid
                         <button type="submit" class="btn btn-primary w-100">Create Profile</button>
                     </form>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Bootstrap JS and Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#sidebarToggle').on('click', function() {
-                $('#sidebarMenu').collapse('toggle');
-                $('.content').toggleClass('collapsed', $('#sidebarMenu').hasClass('show'));
-            });
-        });
-    </script>
-</body>
-</html>
+   <?php include 'dfooter.php' ?>

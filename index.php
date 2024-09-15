@@ -1,40 +1,35 @@
 <?php
-session_start();  // Start the session
-
+session_start();
 if (!isset($_SESSION['userid'])) {
-    // If the user is not logged in, redirect to login page
     header("Location: login.php");
     exit;
-
-    
 }
 
-// If the user is logged in, display the content
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Svadharmam Management System</title>
-</head>
-<body>
-    <h1>Welcome to Svadharmam Management System!</h1>
-    <p><?php echo $_SESSION['userid']; ?>,You are logged in.</p>
-    <br>
-    <a href="create_profile.php">Add Profile</a>
-    <br>
-    <a href="add_counselor.php">Add Counselor</a>
-    <br>
-    <a href="shadhana_recorder.php">Add Shadhana Record</a>
-    <br>
-    <a href="assign_counselor.php">Assign Counselor</a>
-    <br>
-    <a href="view_profiles.php">View Profile</a>
-    <br>
-    <a href="view_users.php">View Users</a>
-    <br>
-    <a href="logout.php">Log Out</a>
+// Include database connection
+require_once 'config.php';
 
-</body>
-</html>
+// Fetch user details from the database
+$userid = $_SESSION['userid'];
+
+$query = "SELECT u.userid, p.name 
+          FROM users u
+          LEFT JOIN profiles p ON u.userid = p.userid 
+          WHERE u.userid = :userid";
+
+$stmt = $conn->prepare($query);
+$stmt->bindParam(':userid', $userid);
+$stmt->execute();
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// If name is available in the profiles table, use it; otherwise fallback to the userid
+$userName = $user ? ($user['name'] ?: 'Name not found') : 'Unknown User';
+
+?>
+<?php include 'dheader.php' ?>
+                <h2 class="text-center">Welcome to Svadhana Recorder Admin Dashboard</h2>
+                <p class="text-center">Logged in User ID: <strong><?php echo htmlspecialchars($user['userid']); ?></strong></p>
+                <p class="text-center">Logged in Name: <strong><?php echo htmlspecialchars($userName); ?></strong></p>
+                <h4 class="text-center alert alert-primary">More Features will be comming soon</h4>
+            </div>
+        </div>
+        <?php include 'dfooter.php' ?>

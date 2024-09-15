@@ -18,15 +18,9 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // Determine if the user is an admin or counselor
 $is_admin = $_SESSION['role'] === 'admin';
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Users - Svadharmam Management System</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <style>
+<?php include 'dheader.php' ?>
+        <h1 class="mb-4">Users</h1>
+        <style>
         table {
             border-collapse: collapse;
         }
@@ -42,11 +36,7 @@ $is_admin = $_SESSION['role'] === 'admin';
             text-align: center;
         }
     </style>
-</head>
-<body>
-    <div class="container mt-5">
-        <h1 class="mb-4">Users</h1>
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-hover" >
             <thead>
                 <tr>
                     <th>ID</th>
@@ -81,8 +71,4 @@ $is_admin = $_SESSION['role'] === 'admin';
                 <?php endforeach; ?>
             </tbody>
         </table>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+        <?php include 'dfooter.php' ?>

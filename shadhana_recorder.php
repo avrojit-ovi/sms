@@ -29,11 +29,28 @@ $user_name = $user['name'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shadhana Recorder</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Svadhana Recorder Admin Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/custom.css">
 </head>
 <body>
-    <div class="container mt-5">
+
+    <!-- Include Sidebar -->
+    <?php include 'assets/sidebar.php'; ?>
+
+    <!-- Main Content -->
+    <div id="content" class="content">
+        <!-- Include Navbar -->
+        <?php include 'assets/navbar.php'; ?>
+
+        <!-- Page Content -->
+        <div class="container-fluid">
+            <!-- Scrollable Rounded Div Card -->
+            <div class="main-card shadow-lg p-5">
         <h1>Sadhana Recorder</h1>
         <form action="shadhana_recorder_process.php" method="post">
             <div class="row">
@@ -160,6 +177,8 @@ $user_name = $user['name'];
             </div>
         </form>
     </div>
+    </div>
+    </div>
 
     <script>
         // Toggle Grantha Study Fields
@@ -212,6 +231,44 @@ $user_name = $user['name'];
         toggleMaterialStudyFields();
         toggleGossipFields();
     </script>
+     <!-- Bootstrap JS and Popper.js -->
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+    <script>
+    // Ensure the sidebar is initially collapsed
+    document.addEventListener("DOMContentLoaded", function() {
+        const sidebar = document.getElementById("sidebar");
+        const content = document.getElementById("content");
+        const navbar = document.querySelector(".navbar");
+
+        sidebar.classList.add("collapsed-sidebar");
+        content.classList.add("collapsed-content");
+        navbar.classList.add("collapsed-navbar");
+    });
+
+    // Sidebar Toggle Script
+    document.getElementById("sidebarToggle").addEventListener("click", function() {
+        const sidebar = document.getElementById("sidebar");
+        const content = document.getElementById("content");
+        const navbar = document.querySelector(".navbar");
+
+        sidebar.classList.toggle("collapsed-sidebar");
+        content.classList.toggle("collapsed-content");
+        navbar.classList.toggle("collapsed-navbar");
+    });
+
+    // Bottom Collapse Button
+    document.getElementById("sidebarCollapseBtn").addEventListener("click", function() {
+        const sidebar = document.getElementById("sidebar");
+        const content = document.getElementById("content");
+        const navbar = document.querySelector(".navbar");
+
+        sidebar.classList.toggle("collapsed-sidebar");
+        content.classList.toggle("collapsed-content");
+        navbar.classList.toggle("collapsed-navbar");
+    });
+</script>
 </body>
 </html>
 
