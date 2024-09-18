@@ -1,4 +1,4 @@
-/* custom.css */
+/* existing styles */
 body, html {
     height: 100%;
     margin: 0;
@@ -11,7 +11,7 @@ body, html {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #343a40;
+    background-color: #15283b;
     padding-top: 20px;
     transition: 0.3s;
     display: flex;
@@ -35,7 +35,7 @@ body, html {
 }
 
 .sidebar .active {
-    background-color: #007bff;
+    background-color: #00a2ff;
 }
 
 .collapsed-sidebar {
@@ -46,6 +46,17 @@ body, html {
     display: inline-block;
     font-size: 18px;
     margin-right: 15px;
+    color: #fff; /* White color for icon */
+    /* 3D Effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 -1px 2px rgba(255, 255, 255, 0.2);
+    transform: translateY(3px);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.sidebar a:hover .sidebar-icon {
+    /* Enhance the 3D effect on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 -2px 4px rgba(255, 255, 255, 0.3);
+    transform: translateY(1px);
 }
 
 .sidebar.collapsed-sidebar a {

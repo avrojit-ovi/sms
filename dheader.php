@@ -1,3 +1,19 @@
+<?php 
+require_once 'config.php';
+// Fetch user details from the database
+$userid = $_SESSION['userid'];
+
+$query = "SELECT userid, name FROM users WHERE userid = :userid";
+$stmt = $conn->prepare($query);
+$stmt->bindParam(':userid', $userid);
+$stmt->execute();
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// If name is available in the users table, use it; otherwise fallback to 'Name not found'
+$userName = $user ? ($user['name'] ?: 'Name not found') : 'Unknown User';
+?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">

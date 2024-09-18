@@ -40,6 +40,7 @@
         navbar.classList.toggle("collapsed-navbar");
     });
 </script>
+<?php include 'assets/footer.php'; ?>
 
 
 </body>

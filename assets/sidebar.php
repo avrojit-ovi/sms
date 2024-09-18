@@ -6,14 +6,12 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 // Start session and check user role
 
 $userRole = isset($_SESSION['role']) ? $_SESSION['role'] : '';
-
-// Determine if the user is an admin or counselor
-$isAdminOrCounselor = ($userRole === 'admin' || $userRole === 'counselor');
 ?>
 
 <div id="sidebar" class="sidebar d-flex flex-column justify-content-between">
     <div>
-        <?php if ($isAdminOrCounselor): ?>
+        <?php if ($userRole === 'admin'): ?>
+            <!-- Admin has access to all menus -->
             <a href="index.php" class="<?php echo $currentPage === 'index.php' ? 'active' : ''; ?>">
                 <i class="fas fa-home sidebar-icon"></i><span>Dashboard</span>
             </a>
@@ -38,7 +36,22 @@ $isAdminOrCounselor = ($userRole === 'admin' || $userRole === 'counselor');
             <a href="view_shadhana_records.php" class="<?php echo $currentPage === 'view_shadhana_records.php' ? 'active' : ''; ?>">
                 <i class="fas fa-list-alt sidebar-icon"></i><span>View Shadhana Records</span>
             </a>
-        <?php else: ?>
+        <?php elseif ($userRole === 'counselor'): ?>
+            <!-- Counselor has limited access -->
+            <a href="index.php" class="<?php echo $currentPage === 'index.php' ? 'active' : ''; ?>">
+                <i class="fas fa-home sidebar-icon"></i><span>Dashboard</span>
+            </a>
+            <a href="create_profile.php" class="<?php echo $currentPage === 'create_profile.php' ? 'active' : ''; ?>">
+                <i class="fas fa-user-plus sidebar-icon"></i><span>Add Profile</span>
+            </a>
+            <a href="view_profiles.php" class="<?php echo $currentPage === 'view_profiles.php' ? 'active' : ''; ?>">
+                <i class="fas fa-address-card sidebar-icon"></i><span>View Profile</span>
+            </a>
+            <a href="view_shadhana_records.php" class="<?php echo $currentPage === 'view_shadhana_records.php' ? 'active' : ''; ?>">
+                <i class="fas fa-list-alt sidebar-icon"></i><span>View Shadhana Records</span>
+            </a>
+        <?php elseif ($userRole === 'user'): ?>
+            <!-- User has access to only Add Shadhana Record -->
             <a href="shadhana_recorder.php" class="<?php echo $currentPage === 'shadhana_recorder.php' ? 'active' : ''; ?>">
                 <i class="fas fa-clipboard sidebar-icon"></i><span>Add Shadhana Record</span>
             </a>
