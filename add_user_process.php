@@ -37,74 +37,73 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $subject = "Welcome to Svadhana Recorder System";
             $message = "
             <html>
-            <head>
-                <title>Welcome to Svadhana Recorder System</title>
-                <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet'>
-                <style>
-                    .card {
-                        margin: 20px;
-                        border-radius: 10px;
-                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                    }
-                    .card-header {
-                        background-color: #4CAF50;
-                        color: white;
-                        font-size: 1.5rem;
-                        text-align: center;
-                    }
-                    .card-body p {
-                        margin: 10px 0;
-                        font-size: 1rem;
-                    }
-                    .card-body i {
-                        margin-right: 5px;
-                    }
-                    .contact-info {
-                        text-align: center;
-                        margin-top: 20px;
-                        font-size: 0.9rem;
-                        color: #555;
-                    }
-                    .contact-info p {
-                        margin: 5px 0;
-                    }
-                    .profile-img {
-                        width: 100%;
-                        max-width: 150px;
-                        border-radius: 50%;
-                        display: block;
-                        margin: 0 auto;
-                    }
-                </style>
-            </head>
-            <body>
-                <div class='container'>
-                    <div class='card'>
-                        <div class='card-header'>
-                            🎉 Welcome, " . htmlspecialchars($name) . "!
-                        </div>
-                        <div class='card-body'>
-                            <img src='https://iskcontrichy.com/wp-content/uploads/2022/02/iskcon_logo.jpg' alt='Profile Image' class='profile-img'>
-                            <h3 class='text-center mt-3'>🎊 Your Profile is Registered Successfully! 🎊</h3>
-                            <p><i class='fas fa-user'></i> <strong>Name:</strong> " . htmlspecialchars($name) . "</p>
-                            <p><i class='fas fa-envelope'></i> <strong>Email:</strong> " . htmlspecialchars($email) . "</p>
-                            <p><i class='fas fa-phone'></i> <strong>Phone:</strong> " . htmlspecialchars($phone) . "</p>
-                            <p><i class='fas fa-id-badge'></i> <strong>UserID:</strong> " . htmlspecialchars($userid) . "</p>
-                            <p><i class='fas fa-user-tag'></i> <strong>Role:</strong> " . htmlspecialchars($role) . "</p>
-                            <p><i class='fas fa-lock'></i> <strong>Password:</strong> " . htmlspecialchars($plain_password) . "</p>
-                            <p><i class='fas fa-link'></i> <strong>Login URL:</strong> <a href='https://sms.svadharmam.com/login.php' target='_blank'>Login to your account</a></p>
-                            <p class='text-center'>🔒 Please keep your login details safe and secure.</p>
-                        </div>
+        <head>
+            <title>Welcome Counselor</title>
+            <style>
+                .container {
+                    width: 100%;
+                    max-width: 600px;
+                    margin: 0 auto;
+                    font-family: Arial, sans-serif;
+                    padding: 20px;
+                }
+                .card {
+                    border: 1px solid #ddd;
+                    border-radius: 8px;
+                    padding: 15px;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                }
+                .card-header {
+                    background-color: #4CAF50;
+                    color: white;
+                    text-align: center;
+                    font-size: 1.5rem;
+                    border-radius: 8px 8px 0 0;
+                    padding: 10px;
+                }
+                .card-body {
+                    padding: 10px;
+                    text-align: left;
+                    font-size: 1rem;
+                }
+                .card-body p {
+                    margin: 10px 0;
+                }
+                .footer {
+                    text-align: center;
+                    font-size: 0.9rem;
+                    color: #555;
+                    margin-top: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <div class='container'>
+                <div class='card'>
+                    <div class='card-header'>
+                        🎉 Congratulations, " . htmlspecialchars($name) . "!
                     </div>
-                    <div class='contact-info'>
-                        <h5>If you need assistance, feel free to reach out:</h5>
-                        <p><strong>📞 Madhura Gaurakisora Das:</strong> +8801816652807</p>
-                        <p><strong>📞 Avrojit Chowdhury Ovi:</strong> +8801333121292</p>
+                    <div class='card-body'>
+                        <p>Hare Krishna🙏 Your User profile has been successfully created in the Svadhana Recorder system. Here are your login details:</p>
+                        <p><strong>Name:</strong> " . htmlspecialchars($name) . "</p>
+                        <p><strong>Email:</strong> " . htmlspecialchars($email) . "</p>
+                        <p><strong>Phone:</strong> " . htmlspecialchars($phone) . "</p>
+                        <p><strong>User ID:</strong> " . htmlspecialchars($userid) . "</p>
+                        <p><strong>Password:</strong> " . htmlspecialchars($plain_password) . "</p>
+                        <p><strong>Role:</strong> " . htmlspecialchars($role) . "</p>
+                        <p><a href='https://sms.svadharmam.com/login.php'>Click here to login</a></p>
                     </div>
                 </div>
-                <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-            </body>
-            </html>
+                <div class='footer'>
+                    <p>If you need assistance, feel free to reach out:</p>
+                     <p><strong>📞 Madhura Gaurakisora Das:</strong> +8801816652807</p>
+                        <p><strong>📞 Avrojit Chowdhury Ovi:</strong> +8801333121292</p>
+
+               <center><h3>Hare Krishna...!!!</h3></center>
+                </div>
+            </div>
+        </body>
+        </html>
             ";
             // Always set content-type when sending HTML email
             $headers = "MIME-Version: 1.0" . "\r\n";
