@@ -101,7 +101,7 @@ $generated_userid = generateUserId($conn);  // Generate the userid
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label for="iskcon_connection_days" class="form-label">How Many Days are You Connected to ISKCON?</label>
+                                <label for="iskcon_connection_days" class="form-label">From which year did you become connected to ISKCON?</label>
                                 <input type="number" class="form-control" id="iskcon_connection_days" name="iskcon_connection_days" required>
                             </div>
                             <div class="col-md-6">

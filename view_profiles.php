@@ -61,7 +61,7 @@ $profiles = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <p><strong>Doing Mangal Aarti Regularly:</strong> <?php echo htmlspecialchars($profile['mangal_aarti_regularly']); ?></p>
                     </div>
                     <div class="col-md-4">
-                        <p><strong>Connected Days:</strong> <?php echo htmlspecialchars($profile['iskcon_connection_days']); ?></p>
+                        <p><strong>Connected From:</strong> <?php echo htmlspecialchars($profile['iskcon_connection_days']); ?></p>
                         <p><strong>Daily Rounds:</strong> <?php echo htmlspecialchars($profile['daily_chant_rounds']); ?></p>
                         <p><strong>Regular Chant Days:</strong> <?php echo htmlspecialchars($profile['regular_chant_days']); ?></p>
                         <p><strong>Granthas Read:</strong> <?php echo htmlspecialchars($profile['granthas_read']); ?></p>
