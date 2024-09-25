@@ -2,9 +2,9 @@
 // config.php
 
 $host = 'localhost';     // Database host
-$dbname = 'u636183987_sms'; // Database name
-$username = 'u636183987_sms';  // Database username
-$password = 'u636183987_smS';  // Database password
+$dbname = 'svadharmam_db'; // Database name
+$username = 'root';  // Database username
+$password = '';  // Database password
 
 try {
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
