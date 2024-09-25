@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                 </div>
                 <div class='footer'>
-                    <p>If you need assistance, feel free to reach out:</p>
+                    <p>For any assistance, please contact our support team.</p>
                      <p><strong>📞 Madhura Gaurakisora Das:</strong> +8801816652807</p>
                         <p><strong>📞 Avrojit Chowdhury Ovi:</strong> +8801333121292</p>
                 </div>

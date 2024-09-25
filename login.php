@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+
     <div class="container" id="container">
         <!-- Removed Sign-Up Form Container -->
-        
+
         <div class="form-container sign-in-container">
             <form action="login_process.php" method="POST">
                 <h1>Svadhana</h1>
@@ -19,6 +20,7 @@
                 <input type="password" name="password" placeholder="Password" required />
                 <br>
                 <button type="submit">Log In</button>
+                <a href="#" id="forgotPasswordLink" onclick="handleForgotPassword()">Forgot Password?</a>
             </form>
         </div>
 
@@ -40,7 +42,29 @@
 
     <script>
         function showAlert() {
-            alert("Please contact your Counselor or Admin to register your profile into the Svadhana Management System");
+            alert("Please contact your Counselor or Admin to register your profile into the Svadhana Management System.");
+        }
+
+        // Handle Forgot Password Functionality
+        function handleForgotPassword() {
+            var userID = prompt("Please enter your UserID to reset your password:");
+            if (userID) {
+                // Create a form and submit it with the UserID
+                var form = document.createElement("form");
+                form.action = "forgot_password.php";
+                form.method = "POST";
+
+                var input = document.createElement("input");
+                input.type = "hidden";
+                input.name = "userid";
+                input.value = userID;
+                form.appendChild(input);
+
+                document.body.appendChild(form);
+                form.submit();
+            } else {
+                alert("UserID is required to reset the password.");
+            }
         }
     </script>
 

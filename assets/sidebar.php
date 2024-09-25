@@ -21,9 +21,6 @@ $userRole = isset($_SESSION['role']) ? $_SESSION['role'] : '';
             <a href="add_counselor.php" class="<?php echo $currentPage === 'add_counselor.php' ? 'active' : ''; ?>">
                 <i class="fas fa-chalkboard-teacher sidebar-icon"></i><span>Add Counselor</span>
             </a>
-            <a href="shadhana_recorder.php" class="<?php echo $currentPage === 'shadhana_recorder.php' ? 'active' : ''; ?>">
-                <i class="fas fa-clipboard sidebar-icon"></i><span>Add Shadhana Record</span>
-            </a>
             <a href="assign_counselor.php" class="<?php echo $currentPage === 'assign_counselor.php' ? 'active' : ''; ?>">
                 <i class="fas fa-user-tie sidebar-icon"></i><span>Assign Counselor</span>
             </a>

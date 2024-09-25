@@ -12,22 +12,15 @@ if (!isset($_SESSION['userid']) || $_SESSION['role'] !== 'admin') {
 // Delete user
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 if ($id > 0) {
-    try {
-        // Delete the user
-        $sql = "DELETE FROM users WHERE id = :id";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
+    $sql = "DELETE FROM users WHERE id = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
+    if ($stmt->execute()) {
         header("Location: view_users.php");
         exit;
-    } catch (PDOException $e) {
-        if ($e->getCode() == '23000') {
-            // Foreign key constraint violation
-            echo "Cannot delete user because there are associated records in the system.";
-        } else {
-            echo "Error deleting user: " . $e->getMessage();
-        }
+    } else {
+        echo "Error deleting user.";
     }
 } else {
     echo "Invalid user ID.";

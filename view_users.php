@@ -25,7 +25,7 @@ $is_admin = $_SESSION['role'] === 'admin';
 
 <!-- Add User Button -->
 <button type="button" class="btn btn-success mb-4" data-bs-toggle="modal" data-bs-target="#addUserModal">
-    Add User
+    <i class="fas fa-user-plus sidebar-icon"></i><span> Add New User</span>
 </button>
 </div>
 <!-- Add User Modal -->
@@ -52,7 +52,7 @@ $is_admin = $_SESSION['role'] === 'admin';
                     </div>
                     <div class="mb-3">
                         <label for="userid" class="form-label">User ID</label>
-                        <input type="text" class="form-control" id="userid" name="userid" required>
+                        <input type="text" class="form-control" id="userid" name="userid" title="Only from here you can give the customized Userid to the user...." required>
                     </div>
                     <div class="mb-3">
                         <label for="role" class="form-label">Role</label>
